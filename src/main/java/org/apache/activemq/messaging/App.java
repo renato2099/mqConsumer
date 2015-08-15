@@ -24,12 +24,23 @@ public class App implements MessageListener
     private Connection connection;
     private Session session;
     private MessageConsumer consumer;
+    private String queueName;
+    private String brokerUrl;
+
+    public App(String bUrl, String qName) {
+        this.queueName = qName;
+        this.brokerUrl = bUrl;
+    }
 
     public static void main( String[] args )
     {
         System.out.println( "Starting consumer" );
-        App app = new App();
-        app.run();
+        if (args.length == 2) {
+            App app = new App();
+            app.run(args[0], args[1]);
+        } else {
+            System.out.println("Consumer needs two parameters:<brokerUrl> <queueName>");
+        }
     }
 
     public void run()
