@@ -36,8 +36,8 @@ public class App implements MessageListener
     {
         System.out.println( "Starting consumer" );
         if (args.length == 2) {
-            App app = new App();
-            app.run(args[0], args[1]);
+            App app = new App(args[0], args[1]);
+            app.run();
         } else {
             System.out.println("Consumer needs two parameters:<brokerUrl> <queueName>");
         }
